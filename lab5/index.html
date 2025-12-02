@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Каталог товарів з різних категорій" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Каталог товарів</title>
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="header-container">
+        <h1 class="logo">Каталог товарів</h1>
+        <button
+          class="mobile-menu-toggle"
+          aria-label="Toggle menu"
+          id="mobile-menu-toggle"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+          <li>
+            <a href="#" id="home-link" class="nav-link active">
+              <span class="nav-icon">🏠</span>
+              <span class="nav-text">Додому</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="catalog-link" class="nav-link">
+              <span class="nav-icon">📦</span>
+              <span class="nav-text">Каталог</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <div class="container">
+        <div id="catalog-container"></div>
+      </div>
+    </main>
+
+    <footer class="main-footer">
+      <div class="container">
+        <p>&copy; 2024 Каталог товарів. Всі права захищені.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

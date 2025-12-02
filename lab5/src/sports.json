@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "Бігові кросівки Nike",
+    "shortname": "nike-shoes",
+    "description": "Професійні бігові кросівки з технологією Air Zoom",
+    "price": "4500 грн"
+  },
+  {
+    "id": 2,
+    "name": "Гантелі невагомі",
+    "shortname": "adjustable-dumbbells",
+    "description": "Регульовані гантелі від 2 до 24 кг для домашніх тренувань",
+    "price": "5500 грн"
+  },
+  {
+    "id": 3,
+    "name": "Велосипед Trek",
+    "shortname": "trek-bike",
+    "description": "Гірський велосипед з карбоновою рамою та гідравлічними гальмами",
+    "price": "35000 грн"
+  },
+  {
+    "id": 4,
+    "name": "Йога-мат Lululemon",
+    "shortname": "yoga-mat",
+    "description": "Професійний килимок для йоги з підвищеною підтримкою",
+    "price": "2800 грн"
+  },
+  {
+    "id": 5,
+    "name": "Тенісна ракетка Wilson",
+    "shortname": "tennis-racket",
+    "description": "Професійна ракетка з карбонового волокна для гри в теніс",
+    "price": "4200 грн"
+  },
+  {
+    "id": 6,
+    "name": "Фітнес-трекер Garmin",
+    "shortname": "fitness-tracker",
+    "description": "Розумний годинник з моніторингом здоров'я та GPS",
+    "price": "8500 грн"
+  }
+]
