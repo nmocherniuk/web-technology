@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lab3</title>
+  </head>
+  <body>
+    <script src="cars/car1.js"></script>
+    <script src="cars/car2.js"></script>
+    <script src="cars/trucks.js"></script>
+    <script type="module">
+      import Square from "./shapes/Square.js";
+      import Rectangle from "./shapes/Rectangle.js";
+      import Rhombus from "./shapes/Rhombus.js";
+      import Parallelogram from "./shapes/Parallelogram.js";
+      import Triangular from "./shapes/Triangular.js";
+      import PiMultiplier from "./PiMultiplier.js";
+      import { PaintBlue, PaintRed, PaintYellow } from "./Painter.js";
+
+      Square.help();
+      Rectangle.help();
+      Rhombus.help();
+      Parallelogram.help();
+
+      const square = new Square(5);
+      const rectangle = new Rectangle(5, 10);
+      const rhombus = new Rhombus(6, 120, 60);
+      const parallelogram = new Parallelogram(5, 10, 120, 60);
+
+      square.info();
+      rectangle.info();
+      rhombus.info();
+      parallelogram.info();
+
+      console.log(Triangular());
+      console.log(Triangular(5, 12, 13));
+      console.log(Triangular(7, 24, 25));
+
+      const multiplyBy2 = PiMultiplier(2);
+      const multiplyBySqrt2 = PiMultiplier(Math.sqrt(2));
+      const divideBy2 = PiMultiplier(0.5);
+      console.log(multiplyBy2());
+      console.log(multiplyBySqrt2());
+      console.log(divideBy2());
+
+      const obj1 = { maxSpeed: 280, type: "Truck", color: "purple" };
+      const obj2 = { type: "Sportcar", maxSpeed: 180, color: "magenta" };
+      const obj3 = { "avg speed": 90, "load capacity": 2400, isCar: true };
+
+      PaintBlue(obj1);
+      PaintRed(obj2);
+      PaintYellow(obj3);
+
+      console.log("\n--- Demonstrating drive methods ---");
+      car1.drive();
+      car2.drive();
+    </script>
+  </body>
+</html>
