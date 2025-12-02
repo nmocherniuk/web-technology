@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Triangle Solver</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Triangle Solver</h1>
+      <p class="description">
+        Enter two elements of a right triangle and their types to calculate all
+        sides and angles.
+      </p>
+
+      <form id="triangleForm">
+        <div class="input-group">
+          <div class="input-pair">
+            <label for="value1">Value 1:</label>
+            <input
+              type="number"
+              id="value1"
+              name="value1"
+              step="any"
+              required
+              placeholder="Enter value"
+            />
+          </div>
+          <div class="input-pair">
+            <label for="type1">Type 1:</label>
+            <select id="type1" name="type1" required>
+              <option value="">Select type</option>
+              <option value="leg">leg</option>
+              <option value="hypotenuse">hypotenuse</option>
+              <option value="adjacent angle">adjacent angle</option>
+              <option value="opposite angle">opposite angle</option>
+              <option value="angle">angle</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="input-pair">
+            <label for="value2">Value 2:</label>
+            <input
+              type="number"
+              id="value2"
+              name="value2"
+              step="any"
+              required
+              placeholder="Enter value"
+            />
+          </div>
+          <div class="input-pair">
+            <label for="type2">Type 2:</label>
+            <select id="type2" name="type2" required>
+              <option value="">Select type</option>
+              <option value="leg">leg</option>
+              <option value="hypotenuse">hypotenuse</option>
+              <option value="adjacent angle">adjacent angle</option>
+              <option value="opposite angle">opposite angle</option>
+              <option value="angle">angle</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit">Calculate</button>
+      </form>
+
+      <div id="result" class="result" style="display: none"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+      // Handle form submission
+      document
+        .getElementById("triangleForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const value1 = parseFloat(document.getElementById("value1").value);
+          const type1 = document.getElementById("type1").value;
+          const value2 = parseFloat(document.getElementById("value2").value);
+          const type2 = document.getElementById("type2").value;
+
+          // Capture console.log output
+          const originalLog = console.log;
+          let output = [];
+          console.log = function (...args) {
+            const message = args.join(" ");
+            output.push(message);
+            originalLog.apply(console, args);
+          };
+
+          // Call triangle function
+          const result = triangle(value1, type1, value2, type2);
+
+          // Restore console.log
+          console.log = originalLog;
+
+          // Display results
+          const resultDiv = document.getElementById("result");
+          resultDiv.style.display = "block";
+
+          if (result === "success") {
+            // Extract values from output (skip instruction message)
+            const aMatch = output.find((line) => line.trim().startsWith("a ="));
+            const bMatch = output.find((line) => line.trim().startsWith("b ="));
+            const cMatch = output.find((line) => line.trim().startsWith("c ="));
+            const alphaMatch = output.find((line) =>
+              line.trim().startsWith("alpha =")
+            );
+            const betaMatch = output.find((line) =>
+              line.trim().startsWith("beta =")
+            );
+
+            resultDiv.innerHTML = `
+              <h3>Results:</h3>
+              <div class="results-grid">
+                <p><strong>${aMatch || "a = N/A"}</strong></p>
+                <p><strong>${bMatch || "b = N/A"}</strong></p>
+                <p><strong>${cMatch || "c = N/A"}</strong></p>
+                <p><strong>${alphaMatch || "alpha = N/A"}</strong></p>
+                <p><strong>${betaMatch || "beta = N/A"}</strong></p>
+              </div>
+              <p class="success-message">✓ Calculation successful</p>
+            `;
+            resultDiv.className = "result success";
+          } else {
+            // Find error message (skip instruction and other messages)
+            const errorMessages = output.filter(
+              (line) =>
+                line.trim() &&
+                !line.includes("Usage instructions") &&
+                !line.includes("Available types") &&
+                !line.includes("Examples") &&
+                !line.startsWith("a =") &&
+                !line.startsWith("b =") &&
+                !line.startsWith("c =") &&
+                !line.startsWith("alpha =") &&
+                !line.startsWith("beta =")
+            );
+            const errorMessage =
+              errorMessages[errorMessages.length - 1] ||
+              result ||
+              "Unknown error";
+
+            resultDiv.innerHTML = `
+              <h3>Error:</h3>
+              <p class="error-message">${errorMessage}</p>
+            `;
+            resultDiv.className = "result error";
+          }
+        });
+    </script>
+  </body>
+</html>
